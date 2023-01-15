@@ -3,7 +3,7 @@
 ###########
 
 # pull official base image
-FROM python:3.11.1-alpine3.17 as builder
+FROM python:3.11.1-alpine3.17 AS builder
 
 # set work directory
 WORKDIR /usr/src/tienda-online
