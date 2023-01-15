@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+
+README.md
+
+# Docker
+Dockerfile
+Dockerfile.prod
+.docker
+
+.dockerignore
+
+docker-compose.yml
+docker-compose.prod.yml
+
+# Python
+app/__pycache__/
+app/*/__pycache__/
+app/*/*/__pycache__/
+app/*/*/*/__pycache__/
+.env/
+.venv/
+venv/
+
+# Local PostgreSQL data
+data/
+
+build
+node_modules

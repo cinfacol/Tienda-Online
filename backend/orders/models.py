@@ -1,8 +1,6 @@
-from datetime import datetime
-
 from django.contrib.auth import get_user_model
 from django.db import models
-
+from django.utils import timezone
 from product.models import Product
 
 from .countries import Countries
@@ -37,7 +35,7 @@ class Order(models.Model):
     shipping_name = models.CharField(max_length=255)
     shipping_time = models.CharField(max_length=255)
     shipping_price = models.DecimalField(max_digits=5, decimal_places=2)
-    date_issued = models.DateTimeField(default=datetime.now())
+    date_issued = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.transaction_id
@@ -49,7 +47,7 @@ class OrderItem(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     count = models.IntegerField()
-    date_added = models.DateTimeField(default=datetime.now)
+    date_added = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.name

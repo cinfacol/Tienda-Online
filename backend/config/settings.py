@@ -55,7 +55,19 @@ ECOMMERCE_APPS = [
     'reviews.apps.ReviewsConfig',
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'corsheaders',
+    'rest_framework',
+    'djoser',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
+    'ckeditor',
+    'ckeditor_uploader',
+    'debug_toolbar',
+]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + ECOMMERCE_APPS + THIRD_PARTY_APPS
 
@@ -68,6 +80,7 @@ CKEDITOR_UPLOAD_PATH = '/media/'
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,7 +95,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "build")],
+        'DIRS': [os.path.join(BASE_DIR, "build"), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,7 +111,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///eline_shop'),
+    'default': env.db('DATABASE_URL', default='postgres:///tienda-online'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -143,12 +156,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'es-co'
-TIME_ZONE = 'America/Bogota'
+TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 MEDIA_URL = '/media/'
