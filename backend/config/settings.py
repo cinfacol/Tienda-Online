@@ -233,6 +233,7 @@ AUTH_USER_MODEL = 'user.UserAccount'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# si está en producción
 if not DEBUG:
     DEFAULT_FROM_EMAIL = 'Cinfacol - Academia de Software <cinfacol@gmail.com>'
     EMAIL_BACKEND = env('EMAIL_BACKEND')
