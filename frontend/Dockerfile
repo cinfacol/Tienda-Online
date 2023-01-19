@@ -16,8 +16,6 @@ ENV PATH="./node_modules/.bin:$PATH"
 
 RUN npm run build
 
-# CMD ["npm", "start"]
-
 # paso 2 CREATE NGINX SERVER
 
 FROM nginx:1.23.3-alpine
