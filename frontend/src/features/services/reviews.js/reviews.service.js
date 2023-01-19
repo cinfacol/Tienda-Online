@@ -4,7 +4,6 @@ import { authApi } from '../auth/authApi';
 export const get_reviews = createAsyncThunk(
   'reviews/get_reviews',
   async (productId, thunkAPI) => {
-    if (localStorage.getItem('access')) {
       const config = {
         headers: {
           'Accept': 'application/json'
@@ -24,7 +23,6 @@ export const get_reviews = createAsyncThunk(
           return thunkAPI.rejectWithValue(error.res.message);
         }
       }
-    }
   }
 )
 

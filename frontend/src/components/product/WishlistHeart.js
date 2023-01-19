@@ -10,37 +10,37 @@ const WishlistHeart = () => {
   const isAuthenticated = useSelector(state => state.auth.user.isLoggedIn);
 
   const addToWishlist = () => {
-      if (isAuthenticated) {
-          let isPresent = false;
-          const product_id = product && product.id.toString();
+    if (isAuthenticated) {
+      let isPresent = false;
+      const product_id = product && product.id.toString();
 
-              wishlist &&
-              wishlist !== null &&
-              wishlist !== undefined &&
-              product &&
-              product !== null &&
-              product !== undefined &&
-              // eslint-disable-next-line array-callback-return
-              wishlist.map(item => {
-              if (item.product.id.toString() === product_id) {
-                  isPresent = true;
-              }
-              });
+        wishlist &&
+        wishlist !== null &&
+        wishlist !== undefined &&
+        product &&
+        product !== null &&
+        product !== undefined &&
+        // eslint-disable-next-line array-callback-return
+        wishlist.map(item => {
+        if (item.product.id.toString() === product_id) {
+          isPresent = true;
+        }
+        });
 
-          if (isPresent) {
-              dispatch(remove_wishlist_item(product_id));
-              dispatch(get_wishlist_items());
-              dispatch(get_wishlist_item_total());
-          } else {
-              dispatch(remove_wishlist_item(product.id));
-              dispatch(add_wishlist_item(product_id));
-              dispatch(get_wishlist_items());
-              dispatch(get_wishlist_item_total());
-          }
-
+      if (isPresent) {
+        dispatch(remove_wishlist_item(product_id));
+        dispatch(get_wishlist_items());
+        dispatch(get_wishlist_item_total());
       } else {
-          return <Navigate to="/login" />
+        dispatch(remove_wishlist_item(product.id));
+        dispatch(add_wishlist_item(product_id));
+        dispatch(get_wishlist_items());
+        dispatch(get_wishlist_item_total());
       }
+
+    } else {
+      return <Navigate to="/login" />
+    }
   };
   const product = useSelector(state => state.products.product);
   const wishlist = useSelector(state => state.wishlist.items);

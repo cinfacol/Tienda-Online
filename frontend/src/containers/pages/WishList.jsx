@@ -9,15 +9,20 @@ const Wishlist = () => {
   const dispatch = useDispatch();
   const wishlist_items = useSelector(state => state.wishlist.items);
   const total_wishlist_items = useSelector(state => state.wishlist.total_items);
+  const isAuthenticated = useSelector(state => state.auth.user.isLoggedIn);
   const [render, setRender] = useState(false);
 
   useEffect(() => {
-    dispatch(get_wishlist_items());
+    if (isAuthenticated) {
+      dispatch(get_wishlist_items());
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    dispatch(get_wishlist_item_total());
+    if (isAuthenticated) {
+      dispatch(get_wishlist_item_total());
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

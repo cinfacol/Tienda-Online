@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 DOMAIN = os.environ.get('DOMAIN')
 
@@ -96,8 +96,8 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [os.path.join(BASE_DIR, 'build'), ],
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'build'), ],
+        # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -113,7 +113,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///tienda-online'),
+    'default': env.db('DATABASE_URL'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -263,14 +263,14 @@ AUTH_USER_MODEL = 'user.UserAccount'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # si está en producción
-if not DEBUG:
+""" if not DEBUG:
     DEFAULT_FROM_EMAIL = 'Cinfacol - Academia de Software <cinfacol@gmail.com>'
     EMAIL_BACKEND = env('EMAIL_BACKEND')
     EMAIL_HOST = env('EMAIL_HOST')
     EMAIL_HOST_USER = env('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
     EMAIL_PORT = env('EMAIL_PORT')
-    EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+    EMAIL_USE_TLS = env('EMAIL_USE_TLS') """
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

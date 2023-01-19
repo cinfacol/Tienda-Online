@@ -37,6 +37,7 @@ export default function ProductDetail() {
 
   const reviews = useSelector(state => state.reviews.reviews);
   const review = useSelector(state => state.reviews.review);
+  const isAuthenticated = useSelector(state => state.auth.user.isLoggedIn);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,12 +46,16 @@ export default function ProductDetail() {
   }, []);
 
   useEffect(() => {
-    dispatch(get_wishlist_items());
+    if (isAuthenticated) {
+      dispatch(get_wishlist_items());
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    dispatch(get_wishlist_item_total());
+    if (isAuthenticated) {
+      dispatch(get_wishlist_item_total());
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -60,11 +65,12 @@ export default function ProductDetail() {
   }, [productId]);
 
   useEffect(() => {
-    dispatch(get_review(productId));
+    if (isAuthenticated) {
+      dispatch(get_review(productId));
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productId]);
 
-  const isAuthenticated = useSelector(state => state.auth.user.isLoggedIn);
   const product = useSelector(state => state.products.product);
   const cart = useSelector(state => state.cart);
   const { displayNotification } = useNotification();
@@ -110,8 +116,6 @@ export default function ProductDetail() {
       navigate('/cart');
     }
   }
-
-
 
   // const [rating, setRating] = useState(5.0);
 
@@ -425,7 +429,7 @@ export default function ProductDetail() {
                     </div>
                   </div>
                   {
-                    isAuthenticated &&
+                    isAuthenticated ?
                       review &&
                       review.id  ?
                       <form onSubmit={e => updateReview(e)}>
@@ -507,6 +511,7 @@ export default function ProductDetail() {
                           Add
                         </button>
                       </form>
+                    : ''
                   }
                 </div>
                 <div className="col-span-3">
