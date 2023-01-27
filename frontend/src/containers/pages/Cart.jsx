@@ -46,7 +46,7 @@ const Cart = () => {
   }, [render]);
 
   const showItems = () => {
-    if (items.length !== 0) {
+    if (items && items.length !== 0) {
       return (
         <div>
           {Array.isArray(items) ?

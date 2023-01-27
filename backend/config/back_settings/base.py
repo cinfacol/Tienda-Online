@@ -2,32 +2,32 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-import environ
+# import environ
 
-env = environ.Env()
-environ.Env.read_env()
+# env = environ.Env()
+# environ.Env.read_env()
 
-ENVIRONMENT = env
+# ENVIRONMENT = env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-DOMAIN = os.environ.get('DOMAIN')
+# DOMAIN = os.environ.get('DOMAIN')
 
-ALLOWED_HOSTS = [
+""" ALLOWED_HOSTS = [
     '127.0.0.1',
     '0.0.0.0',
     'localhost',
-]
+] """
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+# RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+# if RENDER_EXTERNAL_HOSTNAME:
+#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -103,8 +103,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build'), ],
-        # 'DIRS': [],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,10 +125,10 @@ DATABASES = {
     }
 }
 
-DATABASES = {
-    'default': env.db('DATABASE_URL'),
-}
-DATABASES['default']['ATOMIC_REQUESTS'] = True
+# DATABASES = {
+#     'default': env.db('DATABASE_URL'),
+# }
+# DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -267,24 +266,24 @@ DJOSER = {
     },
 }
 
-BT_ENVIRONMENT = os.environ.get('BT_ENVIRONMENT')
-BT_MERCHANT_ID = os.environ.get('BT_MERCHANT_ID')
-BT_PUBLIC_KEY = os.environ.get('BT_PUBLIC_KEY')
-BT_PRIVATE_KEY = os.environ.get('BT_PRIVATE_KEY')
+# BT_ENVIRONMENT = os.environ.get('BT_ENVIRONMENT')
+# BT_MERCHANT_ID = os.environ.get('BT_MERCHANT_ID')
+# BT_PUBLIC_KEY = os.environ.get('BT_PUBLIC_KEY')
+# BT_PRIVATE_KEY = os.environ.get('BT_PRIVATE_KEY')
 
 AUTH_USER_MODEL = 'user.UserAccount'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # si está en producción
-if not DEBUG:
+""" if not DEBUG:
     DEFAULT_FROM_EMAIL = 'Cinfacol - Academia de Software <cinfacol@gmail.com>'
     EMAIL_BACKEND = env('EMAIL_BACKEND')
     EMAIL_HOST = env('EMAIL_HOST')
     EMAIL_HOST_USER = env('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
     EMAIL_PORT = env('EMAIL_PORT')
-    EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+    EMAIL_USE_TLS = env('EMAIL_USE_TLS') """
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -8,7 +8,7 @@ export default function Example() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
           <div className="sm:max-w-lg">
             <h1 className="text-4xl font font-extrabold tracking-tight text-gray-900 sm:text-6xl">
-              Summer styles are finally here
+              Productos que se ajustan a ti
             </h1>
             <p className="mt-4 text-xl text-gray-500">
               This year, our new summer collection will shelter you from the harsh elements of a world that doesn't care
@@ -27,7 +27,7 @@ export default function Example() {
                     <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
                       <div className="w-44 h-64 rounded-lg overflow-hidden sm:opacity-0 lg:opacity-100">
                         <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg"
+                          src="https://img.freepik.com/foto-gratis/concepto-linea-decoracion-flor-galletas-tetera-compras-ordenador-portatil_53876-65023.jpg?size=338&ext=jpg"
                           alt=""
                           className="w-full h-full object-center object-cover"
                         />
@@ -57,7 +57,7 @@ export default function Example() {
                       </div>
                       <div className="w-44 h-64 rounded-lg overflow-hidden">
                         <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
+                          src="https://img.freepik.com/fotos-premium/joven-colombiana-sosteniendo-bolsas-compras-sonriendo_1368-80081.jpg?size=626&ext=jpg"
                           alt=""
                           className="w-full h-full object-center object-cover"
                         />
@@ -66,14 +66,14 @@ export default function Example() {
                     <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
                       <div className="w-44 h-64 rounded-lg overflow-hidden">
                         <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"
+                          src="https://img.freepik.com/foto-gratis/mujer-elegante-portatil-escuchando-musica_1208-193.jpg?w=740&t=st=1674130027~exp=1674130627~hmac=d250dfc512a95da7be36ff66ef974cbc0ca37aaba68fe86ee67719e7893df152"
                           alt=""
                           className="w-full h-full object-center object-cover"
                         />
                       </div>
                       <div className="w-44 h-64 rounded-lg overflow-hidden">
                         <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
+                          src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg"
                           alt=""
                           className="w-full h-full object-center object-cover"
                         />
