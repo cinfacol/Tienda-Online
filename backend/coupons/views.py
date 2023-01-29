@@ -32,7 +32,7 @@ class CheckCouponView(APIView):
                     {'error': 'Coupon code not found'},
                     status=status.HTTP_404_NOT_FOUND
                 )
-        except:
+        except Exception:
             return Response(
                 {'error': 'Something went wrong when checking coupon'},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR

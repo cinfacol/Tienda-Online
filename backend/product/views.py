@@ -1,11 +1,10 @@
+from category.models import Category
 from django.db.models import Q
+from product.models import Product
+from product.serializers import ProductSerializer
 from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from category.models import Category
-from product.models import Product
-from product.serializers import ProductSerializer
 
 
 class ProductDetailView(APIView):
@@ -14,7 +13,7 @@ class ProductDetailView(APIView):
     def get(self, request, productId, format=None):
         try:
             product_id = int(productId)
-        except:
+        except Exception:
             return Response(
                 {"error": "Product ID must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -55,7 +54,7 @@ class ListProductsView(APIView):
 
         try:
             limit = int(limit)
-        except:
+        except Exception:
             return Response(
                 {"error": "Limit must be an integer"}, status=status.HTTP_404_NOT_FOUND
             )
@@ -89,7 +88,7 @@ class ListSearchView(APIView):
 
         try:
             category_id = int(data["category_id"])
-        except:
+        except Exception:
             return Response(
                 {"error": "Category ID must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -159,7 +158,7 @@ class ListRelatedView(APIView):
     def get(self, request, productId, format=None):
         try:
             product_id = int(productId)
-        except:
+        except Exception:
             return Response(
                 {"error": "Product ID must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -231,7 +230,7 @@ class ListBySearchView(APIView):
 
         try:
             category_id = int(data["category_id"])
-        except:
+        except Exception:
             return Response(
                 {"error": "Category ID debe ser un entero"},
                 status=status.HTTP_404_NOT_FOUND,

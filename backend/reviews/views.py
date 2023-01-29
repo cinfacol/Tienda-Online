@@ -1,7 +1,8 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import permissions, status
 from product.models import Product
+from rest_framework import permissions, status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .models import Review
 
 
@@ -11,7 +12,7 @@ class GetProductReviewsView(APIView):
     def get(self, request, productId, format=None):
         try:
             product_id = int(productId)
-        except:
+        except Exception:
             return Response(
                 {"error": "Product ID must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -46,7 +47,7 @@ class GetProductReviewsView(APIView):
 
             return Response({"reviews": results}, status=status.HTTP_200_OK)
 
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when retrieving reviews"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -59,7 +60,7 @@ class GetProductReviewView(APIView):
 
         try:
             product_id = int(productId)
-        except:
+        except Exception:
             return Response(
                 {"error": "Product ID must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -86,7 +87,7 @@ class GetProductReviewView(APIView):
                 result["user"] = review.user.first_name
 
             return Response({"review": result}, status=status.HTTP_200_OK)
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when retrieving review"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -100,14 +101,14 @@ class CreateProductReviewView(APIView):
 
         try:
             rating = float(data["rating"])
-        except:
+        except Exception:
             return Response(
                 {"error": "Rating must be a decimal value"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         try:
             comment = str(data["comment"])
-        except:
+        except Exception:
             return Response(
                 {"error": "Must pass a comment when creating review"},
                 status=status.HTTP_400_BAD_REQUEST,
@@ -160,7 +161,7 @@ class CreateProductReviewView(APIView):
             return Response(
                 {"review": result, "reviews": results}, status=status.HTTP_201_CREATED
             )
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when creating review"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -174,7 +175,7 @@ class UpdateProductReviewView(APIView):
 
         try:
             product_id = int(productId)
-        except:
+        except Exception:
             return Response(
                 {"error": "Product ID must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -182,14 +183,14 @@ class UpdateProductReviewView(APIView):
 
         try:
             rating = float(data["rating"])
-        except:
+        except Exception:
             return Response(
                 {"error": "Rating must be a decimal value"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         try:
             comment = str(data["comment"])
-        except:
+        except Exception:
             return Response(
                 {"error": "Must pass a comment when creating review"},
                 status=status.HTTP_400_BAD_REQUEST,
@@ -244,7 +245,7 @@ class UpdateProductReviewView(APIView):
             return Response(
                 {"review": result, "reviews": results}, status=status.HTTP_200_OK
             )
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when updating review"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -257,7 +258,7 @@ class DeleteProductReviewView(APIView):
 
         try:
             product_id = int(productId)
-        except:
+        except Exception:
             return Response(
                 {"error": "Product ID must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -298,7 +299,7 @@ class DeleteProductReviewView(APIView):
                     {"error": "Review for this product does not exist"},
                     status=status.HTTP_404_NOT_FOUND,
                 )
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when deleting product review"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -311,7 +312,7 @@ class FilterProductReviewsView(APIView):
     def get(self, request, productId, format=None):
         try:
             product_id = int(productId)
-        except:
+        except Exception:
             return Response(
                 {"error": "Product ID must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -329,7 +330,7 @@ class FilterProductReviewsView(APIView):
 
         try:
             rating = float(rating)
-        except:
+        except Exception:
             return Response(
                 {"error": "Rating must be a decimal value"},
                 status=status.HTTP_400_BAD_REQUEST,
@@ -369,7 +370,7 @@ class FilterProductReviewsView(APIView):
                     results.append(item)
 
             return Response({"reviews": results}, status=status.HTTP_200_OK)
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when filtering reviews for product"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,

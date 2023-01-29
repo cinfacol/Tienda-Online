@@ -4,7 +4,7 @@ from pathlib import Path
 
 import environ
 # from config.logging import *
-from config.back_settings.base import *
+from config.back_settings.base import *  # NOQA
 
 env = environ.Env()
 environ.Env.read_env()

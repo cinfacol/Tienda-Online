@@ -1,15 +1,14 @@
 import braintree
+from cart.models import Cart, CartItem
+from coupons.models import FixedPriceCoupon, PercentageCoupon
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render
+from orders.models import Order, OrderItem
+from product.models import Product
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from cart.models import Cart, CartItem
-from coupons.models import FixedPriceCoupon, PercentageCoupon
-from orders.models import Order, OrderItem
-from product.models import Product
 from shipping.models import Shipping
 
 gateway = braintree.BraintreeGateway(
@@ -28,7 +27,7 @@ class GenerateTokenView(APIView):
             token = gateway.client_token.generate()
 
             return Response({"braintree_token": token}, status=status.HTTP_200_OK)
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when retrieving braintree token"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -144,7 +143,7 @@ class GetPaymentTotalView(APIView):
                     status=status.HTTP_200_OK,
                 )
 
-        except:
+        except Exception:
             return Response(
                 {
                     "error": "Something went wrong when retrieving payment total information"
@@ -248,7 +247,7 @@ class ProcessPaymentView(APIView):
                     "options": {"submit_for_settlement": True},
                 }
             )
-        except:
+        except Exception:
             return Response(
                 {"error": "Error processing the transaction"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -287,7 +286,7 @@ class ProcessPaymentView(APIView):
                     shipping_time=shipping_time,
                     shipping_price=float(shipping_price),
                 )
-            except:
+            except Exception:
                 return Response(
                     {
                         "error": "Transaction succeeded but failed to create the order"
@@ -307,7 +306,7 @@ class ProcessPaymentView(APIView):
                         price=cart_item.product.price,
                         count=cart_item.count,
                     )
-                except:
+                except Exception:
                     return Response(
                         {
                             "error": "Transaction succeeded and order created, but failed to create an order item"
@@ -330,7 +329,7 @@ class ProcessPaymentView(APIView):
                     [user.email],
                     fail_silently=False,
                 )
-            except:
+            except Exception:
                 return Response(
                     {
                         "error": "Transaction succeeded and order created, but failed to send email"
@@ -344,7 +343,7 @@ class ProcessPaymentView(APIView):
 
                 # Actualizar carrito
                 Cart.objects.filter(user=user).update(total_items=0)
-            except:
+            except Exception:
                 return Response(
                     {
                         "error": "Transaction succeeded and order successful, but failed to clear cart"

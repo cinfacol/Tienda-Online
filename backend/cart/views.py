@@ -1,9 +1,8 @@
+from product.models import Product
+from product.serializers import ProductSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from product.models import Product
-from product.serializers import ProductSerializer
 
 from .models import Cart, CartItem
 
@@ -30,7 +29,7 @@ class GetItemsView(APIView):
 
                     result.append(item)
             return Response({"cart": result}, status=status.HTTP_200_OK)
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when retrieving cart items"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -44,7 +43,7 @@ class AddItemView(APIView):
 
         try:
             product_id = int(data["product_id"])
-        except:
+        except Exception:
             return Response(
                 {"error": "Product ID debe ser un número entero"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -101,7 +100,7 @@ class AddItemView(APIView):
                     {"error": "Not enough of this item in stock"},
                     status=status.HTTP_200_OK,
                 )
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when adding item to cart"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -133,7 +132,7 @@ class GetTotalView(APIView):
                 {"total_cost": total_cost, "total_compare_cost": total_compare_cost},
                 status=status.HTTP_200_OK,
             )
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when retrieving total costs"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -149,7 +148,7 @@ class GetItemTotalView(APIView):
             total_items = cart.total_items
 
             return Response({"total_items": total_items}, status=status.HTTP_200_OK)
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when getting total number of items"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -163,7 +162,7 @@ class UpdateItemView(APIView):
 
         try:
             product_id = int(data["product_id"])
-        except:
+        except Exception:
             return Response(
                 {"error": "Product ID must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -171,7 +170,7 @@ class UpdateItemView(APIView):
 
         try:
             count = int(data["count"])
-        except:
+        except Exception:
             return Response(
                 {"error": "Count value must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -222,7 +221,7 @@ class UpdateItemView(APIView):
                     {"error": "Not enough of this item in stock"},
                     status=status.HTTP_200_OK,
                 )
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when updating cart item"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -236,7 +235,7 @@ class RemoveItemView(APIView):
 
         try:
             product_id = int(data["product_id"])
-        except:
+        except Exception:
             return Response(
                 {"error": "Product ID must be an integer"},
                 status=status.HTTP_404_NOT_FOUND,
@@ -283,7 +282,7 @@ class RemoveItemView(APIView):
                     result.append(item)
 
             return Response({"cart": result}, status=status.HTTP_200_OK)
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when removing item"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -310,7 +309,7 @@ class EmptyCartView(APIView):
             return Response(
                 {"success": "Cart emptied successfully"}, status=status.HTTP_200_OK
             )
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong emptying cart"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -330,7 +329,7 @@ class SynchCartView(APIView):
 
                 try:
                     product_id = int(cart_item["product_id"])
-                except:
+                except Exception:
                     return Response(
                         {"error": "Product ID must be an integer"},
                         status=status.HTTP_404_NOT_FOUND,
@@ -352,7 +351,7 @@ class SynchCartView(APIView):
 
                     try:
                         cart_item_count = int(cart_item["count"])
-                    except:
+                    except Exception:
                         cart_item_count = 1
 
                     # Chqueo con base de datos
@@ -365,7 +364,7 @@ class SynchCartView(APIView):
                     # Agregar el item al carrito del usuario
                     try:
                         cart_item_count = int(cart_item["count"])
-                    except:
+                    except Exception:
                         cart_item_count = 1
 
                     if cart_item_count <= quantity:
@@ -383,7 +382,7 @@ class SynchCartView(APIView):
                 return Response(
                     {"success": "Cart Synchronized"}, status=status.HTTP_201_CREATED
                 )
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when synching cart"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,

@@ -1,10 +1,9 @@
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
 from cart.models import Cart, CartItem
 from product.models import Product
 from product.serializers import ProductSerializer
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import WishList, WishListItem
 
@@ -30,7 +29,7 @@ class GetItemsView(APIView):
                 {'wishlist': result},
                 status=status.HTTP_200_OK
             )
-        except:
+        except Exception:
             return Response(
                 {'error': 'Something went wrong when retrieving wishlist items'},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -44,7 +43,7 @@ class AddItemView(APIView):
 
         try:
             product_id = int(data['product_id'])
-        except:
+        except Exception:
             return Response(
                 {'error': 'Product ID must be an integer'},
                 status=status.HTTP_404_NOT_FOUND
@@ -111,7 +110,7 @@ class AddItemView(APIView):
                 status=status.HTTP_201_CREATED
             )
 
-        except:
+        except Exception:
             return Response(
                 {'error': 'Something went wrong when adding item to wishlist'},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -130,7 +129,7 @@ class GetItemTotalView(APIView):
                 {'total_items': total_items},
                 status=status.HTTP_200_OK
             )
-        except:
+        except Exception:
             return Response(
                 {'error': 'Something went wrong when retrieving total number of wishlist items'},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -144,7 +143,7 @@ class RemoveItemView(APIView):
 
         try:
             product_id = int(data['product_id'])
-        except:
+        except Exception:
             return Response(
                 {'error': 'Product ID must be an integer'},
                 status=status.HTTP_404_NOT_FOUND
@@ -195,7 +194,7 @@ class RemoveItemView(APIView):
                 {'wishlist': result},
                 status=status.HTTP_200_OK
             )
-        except:
+        except Exception:
             return Response(
                 {'error': 'Something went wrong when removing wishlist item'},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR

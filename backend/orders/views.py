@@ -25,7 +25,7 @@ class ListOrdersView(APIView):
                 result.append(item)
 
             return Response({"orders": result}, status=status.HTTP_200_OK)
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when retrieving orders"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -80,7 +80,7 @@ class ListOrderDetailView(APIView):
                     {"error": "Order with this transaction ID does not exist"},
                     status=status.HTTP_404_NOT_FOUND,
                 )
-        except:
+        except Exception:
             return Response(
                 {"error": "Something went wrong when retrieving order detail"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,

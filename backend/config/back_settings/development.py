@@ -1,4 +1,4 @@
-from .base import *
+from .base import *  # NOQA
 
 SECRET_KEY = 'admin123'
 
@@ -9,6 +9,6 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # NOQA
     }
 }

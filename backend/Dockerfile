@@ -16,6 +16,8 @@ RUN apk update \
 
 COPY . .
 
+RUN flake8 --ignore=E127,E501,W503,F401 .
+
 COPY ./requirements.txt ./requirements.txt
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/backend/wheels -r requirements.txt
 

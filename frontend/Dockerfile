@@ -1,6 +1,6 @@
 # tienda-online/frontend/Dockerfile
 
-FROM node:alpine3.17 AS builder
+FROM node:alpine3.17
 
 WORKDIR /frontend
 
