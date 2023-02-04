@@ -7,7 +7,7 @@ services:
     build:
       context: ./backend
     container_name: django_api
-    command: gunicorn config.wsgi:application --worker-class gevent --bind 0.0.0.0:8000
+    command: gunicorn config.wsgi:application --worker-class gevent --worker-connections=1000 --workers=5 --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
     env_file:
