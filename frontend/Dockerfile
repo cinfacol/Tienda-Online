@@ -14,4 +14,4 @@ COPY . .
 
 ENV PATH="./node_modules/.bin:$PATH"
 
-RUN yarn build
+RUN npm build
